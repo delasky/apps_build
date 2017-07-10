@@ -1,0 +1,36 @@
+{
+  "name": "next-gen-build-script",
+  "version": "0.0.46",
+  "description": "HS Core (wombat) master job",
+  "main": "build.js",
+  "scripts": {
+    "test": "mocha ./**/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/redbookplatform/hs-core-build-script.git"
+  },
+  "author": "alex haines, daniel olasky, tiffany lee",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/redbookplatform/hs-core-build-script#readme",
+  "is_release_candidate": false,
+  "dependencies": {
+    "async": "^2.1.4",
+    "fs-extra": "^2.1.2",
+    "lodash": "^4.17.2",
+    "request": "^2.79.0",
+    "require-directory": "^2.1.1",
+    "shelljs": "^0.7.5",
+    "sinon": "^2.3.4"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "grunt": "^1.0.1",
+    "grunt-bump": "^0.8.0",
+    "json-update": "^3.0.0",
+    "load-grunt-tasks": "^3.5.2",
+    "mocha": "^3.4.2",
+    "mock-all": "^0.0.4",
+    "mock-fs": "^4.4.1"
+  }
+}
