@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    var argv        = require('yargs').array('envs').argv
+    var argv        = require('yargs').array('projects').argv
     var async   = require('async');
     var _       = require('lodash');
     var request = require('request');
@@ -28,32 +28,32 @@
 
     var asyncifyNoop = async.asyncify(_.noop);
 
-    async.auto({
-        job_type                : async.constant(JOB_TYPE)
-        , is_release            : async.constant(IS_RELEASE)
-        , path                  : async.constant(process.env.WORKSPACE)
-        , date                  : async.constant(new Date().getTime())
-        , project_dirs          : async.constant(PROJECT_DIRS)
-        , hotfix_branches       : [
-            'project_dirs', 'job_type', JOB_TYPE === 'hotfix_snapshot' ? checkoutCreateHotfixBranch : asyncifyNoop
-        ]
-        , version               : async.constant(VERSION)
-        , environments          : [
-            'job_type', calculateEnv
-        ]
-        , new_version           : [
-            'job_type', 'version', 'date', calculateVersion
-        ]
-        , each_directory        : [
-            'job_type', 'new_version', 'project_dirs', 'environments', eachDirectory
-        ]
-        , each_bump             : [
-            'new_version', 'job_type', 'project_dirs', 'each_directory', bumpDirectories
-        ]
-        , merge_branches        : [
-            'job_type', 'project_dirs', 'each_bump', 'new_version', 'is_release', IS_RELEASE ? mergeBranches : asyncifyNoop
-        ]
-    });
+    // async.auto({
+    //     job_type                : async.constant(JOB_TYPE)
+    //     , is_release            : async.constant(IS_RELEASE)
+    //     , path                  : async.constant(process.env.WORKSPACE)
+    //     , date                  : async.constant(new Date().getTime())
+    //     , project_dirs          : async.constant(PROJECT_DIRS)
+    //     , hotfix_branches       : [
+    //         'project_dirs', 'job_type', JOB_TYPE === 'hotfix_snapshot' ? checkoutCreateHotfixBranch : asyncifyNoop
+    //     ]
+    //     , version               : async.constant(VERSION)
+    //     , environments          : [
+    //         'job_type', calculateEnv
+    //     ]
+    //     , new_version           : [
+    //         'job_type', 'version', 'date', calculateVersion
+    //     ]
+    //     , each_directory        : [
+    //         'job_type', 'new_version', 'project_dirs', 'environments', eachDirectory
+    //     ]
+    //     , each_bump             : [
+    //         'new_version', 'job_type', 'project_dirs', 'each_directory', bumpDirectories
+    //     ]
+    //     , merge_branches        : [
+    //         'job_type', 'project_dirs', 'each_bump', 'new_version', 'is_release', IS_RELEASE ? mergeBranches : asyncifyNoop
+    //     ]
+    // });
 
 })();
 
