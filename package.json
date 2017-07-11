@@ -21,7 +21,8 @@
     "request": "^2.79.0",
     "require-directory": "^2.1.1",
     "shelljs": "^0.7.5",
-    "sinon": "^2.3.4"
+    "sinon": "^2.3.4",
+    "yargs": "^8.0.2"
   },
   "devDependencies": {
     "chai": "^4.0.2",

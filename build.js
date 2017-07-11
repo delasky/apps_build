@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-
+    var argv        = require('yargs').array('envs').argv
     var async   = require('async');
     var _       = require('lodash');
     var request = require('request');
@@ -18,7 +18,8 @@
 
     // CONSTANTS
     var VERSION             = _.get(pkg, 'version');
-    var JOB_TYPE            = process.argv[2];
+    var JOB_TYPE            = argv.job_type;
+    var PROJECT_DIRS        = argv.projects;
     var IS_RELEASE          = JOB_TYPE === 'release' || JOB_TYPE === 'hotfix_release';
 
     console.log('*** Current Version>>>', VERSION);
@@ -32,7 +33,7 @@
         , is_release            : async.constant(IS_RELEASE)
         , path                  : async.constant(process.env.WORKSPACE)
         , date                  : async.constant(new Date().getTime())
-        , project_dirs          : async.constant(projects)
+        , project_dirs          : async.constant(PROJECT_DIRS)
         , hotfix_branches       : [
             'project_dirs', 'job_type', JOB_TYPE === 'hotfix_snapshot' ? checkoutCreateHotfixBranch : asyncifyNoop
         ]
