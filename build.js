@@ -61,7 +61,7 @@
             'job_type', 'new_version', 'project_dirs', 'environments', eachDirectory
         ]
         , each_bump             : [
-            'new_version', 'job_type', 'project_dirs', 'each_directory', IS_RELEASE ? bumpDirectories : asyncifyNoop
+            'ref_dir', 'new_version', 'job_type', 'project_dirs', 'each_directory', IS_RELEASE ? bumpDirectories : asyncifyNoop
         ]
         , merge_branches        : [
             'job_type', 'project_dirs', 'each_bump', 'new_version', 'is_release', IS_RELEASE ? mergeBranches : asyncifyNoop
