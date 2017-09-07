@@ -34,6 +34,7 @@
     var REF_DIR             = argv.ref_dir
     var VERSION             = _.get(pkg, 'version');
 
+    console.log('*** ref dir', REF_DIR)
     console.log('*** Current Version>>>', VERSION);
     console.log('*** JOB_TYPE>>>', JOB_TYPE);
 
