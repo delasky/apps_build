@@ -1,3 +1,13 @@
+/*
+ *
+ * entry point for the catalyst-build-script system. arguments can be passed in via command line args
+ *
+ * --job_type=snapshot|release|hotfix|hotfix-release
+ * --projects=<app folders in the jenkins workspace, comma separated>
+ * --ref_dir=<name of the reference directory. this is the directory that will 
+ *  control versioning for all apps in the project. If not specified the 
+ *  catalyst-build-script dir will be used>
+ */
 (function() {
     "use strict";
     var argv        = require('yargs').array('projects').argv
@@ -9,6 +19,7 @@
 
     // SERVICES
     var calculateVersion                = require('./lib/calculateVersion.js');
+    var calculateRefDirVersion          = require('./lib/calculateRefDirVersion.js');
     var calculateEnv                    = require('./lib/calculateEnv.js');
     var eachDirectory                   = require('./lib/eachDirectory.js');
     var bumpDirectories                 = require('./lib/bumpDirectories.js');
@@ -17,14 +28,14 @@
     var mergeBranches                   = require('./lib/mergeBranches.js');
 
     // CONSTANTS
-    var VERSION             = _.get(pkg, 'version');
     var JOB_TYPE            = argv.job_type;
     var PROJECT_DIRS        = argv.projects;
     var IS_RELEASE          = JOB_TYPE === 'release' || JOB_TYPE === 'hotfix_release';
+    var REF_DIR             = argv.ref_dir
+    var VERSION             = _.get(pkg, 'version');
 
     console.log('*** Current Version>>>', VERSION);
     console.log('*** JOB_TYPE>>>', JOB_TYPE);
-
 
     var asyncifyNoop = async.asyncify(_.noop);
 
@@ -34,10 +45,11 @@
         , path                  : async.constant(process.env.WORKSPACE)
         , date                  : async.constant(new Date().getTime())
         , project_dirs          : async.constant(PROJECT_DIRS)
+        , ref_dir               : async.constant(REF_DIR)
         , hotfix_branches       : [
             'project_dirs', 'job_type', JOB_TYPE === 'hotfix_snapshot' ? checkoutCreateHotfixBranch : asyncifyNoop
         ]
-        , version               : async.constant(VERSION)
+        , version               : REF_DIR ? ['ref_dir', calculateRefDirVersion ] : async.constant(VERSION)
         , environments          : [
             'job_type', calculateEnv
         ]
