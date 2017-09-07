@@ -5,6 +5,7 @@
  * --job_type=snapshot|release|hotfix|hotfix-release
  * --projects=<app folders in the jenkins workspace, comma separated>
  * --ref_dir=<name of the reference directory. this is the directory that will 
+ * --envs=<list of envs to install dev,qa,stg,prd>
  *  control versioning for all apps in the project. If not specified the 
  *  catalyst-build-script dir will be used>
  */
