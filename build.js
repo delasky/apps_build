@@ -11,7 +11,7 @@
  */
 (function() {
     "use strict";
-    var argv        = require('yargs').array('projects').argv
+    var argv        = require('yargs').array('projects').array('envs').argv
     var async   = require('async');
     var _       = require('lodash');
     var request = require('request');
@@ -33,11 +33,13 @@
     var PROJECT_DIRS        = argv.projects;
     var IS_RELEASE          = JOB_TYPE === 'release' || JOB_TYPE === 'hotfix_release';
     var REF_DIR             = argv.ref_dir
+    var ENVS                = argv.envs
     var VERSION             = _.get(pkg, 'version');
 
     console.log('*** ref dir', REF_DIR)
     console.log('*** Current build script Version>>>', VERSION);
     console.log('*** JOB_TYPE>>>', JOB_TYPE);
+    console.log('ENVS', ENVS)
 
     var asyncifyNoop = async.asyncify(_.noop);
 
@@ -52,7 +54,7 @@
             'project_dirs', 'job_type', JOB_TYPE === 'hotfix_snapshot' ? checkoutCreateHotfixBranch : asyncifyNoop
         ]
         , version               : REF_DIR ? ['ref_dir', calculateRefDirVersion ] : async.constant(VERSION)
-        , environments          : [
+        , environments          : ENVS ? async.constant(ENVS) : [
             'job_type', calculateEnv
         ]
         , new_version           : [
