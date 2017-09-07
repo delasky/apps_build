@@ -35,7 +35,7 @@
     var VERSION             = _.get(pkg, 'version');
 
     console.log('*** ref dir', REF_DIR)
-    console.log('*** Current Version>>>', VERSION);
+    console.log('*** Current build script Version>>>', VERSION);
     console.log('*** JOB_TYPE>>>', JOB_TYPE);
 
     var asyncifyNoop = async.asyncify(_.noop);
