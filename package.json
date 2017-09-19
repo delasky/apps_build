@@ -1,6 +1,6 @@
 {
   "name": "next-gen-build-script",
-  "version": "0.18.1",
+  "version": "0.19.1",
   "description": "HS Core (wombat) master job",
   "main": "build.js",
   "scripts": {
