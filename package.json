@@ -1,6 +1,6 @@
 {
   "name": "apps-build-tool",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A toolbox for everything build related. Jenkins, webpack, deployment",
   "main": "build.js",
   "scripts": {
@@ -9,8 +9,8 @@
     "publish": "self-publish"
   },
   "bin": {
-      "jenkins-build": "./build.js",
-      "self-publish": "./self-publish.sh"
+    "jenkins-build": "./build.js",
+    "self-publish": "./self-publish.sh"
   },
   "repository": {
     "type": "git",
