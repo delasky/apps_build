@@ -1,13 +1,14 @@
+#!/usr/bin/env node
 /*
  *
  * entry point for the catalyst-build-script system. arguments can be passed in via command line args
  *
  * --job_type=snapshot|release|hotfix|hotfix-release
  * --projects=<app folders in the jenkins workspace, comma separated>
- * --ref_dir=<name of the reference directory. this is the directory that will 
+ * --ref_dir=<name of the reference directory. this is the directory that will
+     control versioning for all apps in the project. If not specified the
+     catalyst-build-script dir will be used>
  * --envs=<list of envs to install dev,qa,stg,prd>
- *  control versioning for all apps in the project. If not specified the 
- *  catalyst-build-script dir will be used>
  */
 (function() {
     "use strict";
@@ -35,6 +36,20 @@
     var REF_DIR             = argv.ref_dir
     var ENVS                = argv.envs
     var VERSION             = _.get(pkg, 'version');
+
+    if (!(JOB_TYPE && PROJECT_DIRS && REF_DIR && ENVS)) {
+        console.log('Missing Arguments')
+
+        console.log(`
+         --job_type=snapshot|release|hotfix|hotfix-release
+         --projects=<app folders in the jenkins workspace, comma separated>
+         --ref_dir=<name of the reference directory. this is the directory that will
+             control versioning for all apps in the project. If not specified the
+             catalyst-build-script dir will be used>
+         --envs=<list of envs to install dev,qa,stg,prd>
+      `)
+        process.exit(1)
+    }
 
     console.log('*** ref dir', REF_DIR)
     console.log('*** Current build script Version>>>', VERSION);
