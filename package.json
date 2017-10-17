@@ -1,14 +1,16 @@
 {
-  "name": "next-gen-build-script",
-  "version": "0.36.1",
-  "description": "HS Core (wombat) master job",
+  "name": "apps-build-tool",
+  "version": "0.0.1",
+  "description": "A toolbox for everything build related. Jenkins, webpack, deployment",
   "main": "build.js",
   "scripts": {
     "test": "mocha ./**/*.spec.js",
-    "build": "jenkins-build"
+    "build": "jenkins-build",
+    "publish": "self-publish"
   },
   "bin": {
-      "jenkins-build": "./build.js"
+      "jenkins-build": "./build.js",
+      "self-publish": "./self-publish.sh"
   },
   "repository": {
     "type": "git",
