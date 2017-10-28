@@ -1,3 +1,4 @@
+
 (function() {
     "use strict";
 
@@ -9,7 +10,7 @@
         console.log('TESTING')
         console.log('***********')
 
-        exec('npm run test');
+        exec('yarn run test');
 
         callback();
 

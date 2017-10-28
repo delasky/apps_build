@@ -13,8 +13,7 @@
         , logger= require('./utils/logger.js')
 
     // SERVICES
-    var installInternalDeps         = require('./installInternalDeps.js')
-        , commitYarnLock            = require('./commitYarnLock.js')
+    var , commitYarnLock            = require('./commitYarnLock.js')
         , updateVersionInPkg        = require('./updateVersionInPkg.js')
         , buildPublishTestEachEnv   = require('./buildPublishTestEachEnv/index.js')
         , buildPublishTestRPM       = require('./buildPublishTestRPM')
@@ -36,8 +35,6 @@
           envs                          : async.constant(ENVS)
         , new_version                   : async.constant(NEW_VERSION)
         , is_release                    : async.constant(IS_RELEASE)
-        , install_internal_deps         : ['new_version', installInternalDeps]
-        , commit_yarn_lock              : ['install_internal_deps', commitYarnLock]
         , update_version_in_pkg         : ['new_version', updateVersionInPkg('new_version')]
         , build_publish_test_each_env   : ['new_version', 'envs', buildPublishTestEachEnv]
         // , buildPublishTestRPM           : ['new_version', 'is_release', buildPublishTestRPM]
@@ -56,11 +53,6 @@
 
 })();
 
-
-    // non env specific subtasks
-        // install internal dependencies[X]
-        // commit yarn lock file        [X]
-        // update version in package    [X]
 
     // env specific sub tasks
         // build
