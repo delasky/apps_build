@@ -6,10 +6,12 @@
   "scripts": {
     "test": "mocha ./**/*.spec.js",
     "build": "jenkins-build",
+    "app-deploy": "jenkins-app-deploy",
     "self-publish": "update-tool"
   },
   "bin": {
     "jenkins-build": "./build.js",
+    "jenkins-app-deploy": "./ui_lib/deploy.js",
     "update-tool": "./update-tool.sh"
   },
   "repository": {

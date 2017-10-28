@@ -1,0 +1,26 @@
+{
+    "dev": {
+        "host": "bodhi-dev.io",
+        "username": "sfcat2jenkins",
+        "password": "reallylongbodhi",
+        "namespace": "base"
+    },
+    "qa": {
+        "host": "bodhi-qa.io",
+        "username": "sfcat2jenkins",
+        "password": "daniel.olasky+sfcat2jenkins@hotschedules.com",
+        "namespace": "base"
+    },
+    "stg": {
+        "host": "bodhi-stg.io",
+        "username": "sfcat2jenkins",
+        "password": "reallylongbodhi",
+        "namespace": "base"
+    },
+    "prd": {
+        "host": "hotschedules.io",
+        "username": "sfcat2jenkins",
+        "password": "reallylongbodhi",
+        "namespace": "base"
+    }
+}
