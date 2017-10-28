@@ -13,8 +13,7 @@
         , logger= require('./utils/logger.js')
 
     // SERVICES
-    var , commitYarnLock            = require('./commitYarnLock.js')
-        , updateVersionInPkg        = require('./updateVersionInPkg.js')
+    var updateVersionInPkg        = require('./updateVersionInPkg.js')
         , buildPublishTestEachEnv   = require('./buildPublishTestEachEnv/index.js')
         , buildPublishTestRPM       = require('./buildPublishTestRPM')
         , createReleaseCandidate    = require('./createReleaseCandidate.js')
