@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * `yarn run app-deploy -- --environments=dev,qa,stg --new_version=0.0.1 --job_type=snapshot|release`
  */
