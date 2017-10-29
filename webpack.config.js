@@ -22,7 +22,7 @@
     var new_version = build_version || _.get(pkg, 'version');
     console.log('build_version?', build_version);
     console.log('writing index.html with version', new_version);
-    var paths = require('./build_scripts/paths.js');
+    var paths = require('./ui_lib/paths.js');
     var CleanWebpackPlugin = require('clean-webpack-plugin');
     var WebpackIgnorePlugin = webpack.IgnorePlugin;
     var AutoDllPlugin = require('autodll-webpack-plugin');
