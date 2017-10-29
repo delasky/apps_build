@@ -1,6 +1,6 @@
 {
   "name": "apps-build-tool",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "A toolbox for everything build related. Jenkins, webpack, deployment",
   "main": "build.js",
   "scripts": {
